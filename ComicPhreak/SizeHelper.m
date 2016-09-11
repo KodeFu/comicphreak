@@ -192,7 +192,7 @@
 	CGRect screenBound = [[UIScreen mainScreen] bounds];
 	CGSize screenSize = screenBound.size;
     
-    DLOG(@"--> getDeviceWidth: %f", screenSize.width);
+    //DLOG(@"--> getDeviceWidth: %f", screenSize.width);
     
     return screenSize.width;
 }
@@ -203,8 +203,7 @@
 	CGRect screenBound = [[UIScreen mainScreen] bounds];
 	CGSize screenSize = screenBound.size;
 	
-    DLOG(@"--> getDeviceHeight: %f", screenSize.height);
-
+    //DLOG(@"--> getDeviceHeight: %f", screenSize.height);
     
     return screenSize.height;
 }
@@ -240,7 +239,7 @@
 // This method gets the content's width for an interface orientation
 - (float) _getContentWidthForInterfaceOrientation: (CGSize) size
 {
-    DLOG(@">> pages: %d, width: %f, scale: %f", _pagesTotal, size.width, _scaleFactor);
+    //DLOG(@">> pages: %d, width: %f, scale: %f", _pagesTotal, size.width, _scaleFactor);
     return _pagesTotal * size.width * _scaleFactor;
 }
 

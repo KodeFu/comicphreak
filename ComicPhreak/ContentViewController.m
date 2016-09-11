@@ -193,7 +193,7 @@
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
-    [SizeHelper dumpScrollViewInfo:_scrollView];
+    //[SizeHelper dumpScrollViewInfo:_scrollView];
     
     //debug
     //CGRect screenBound = [[UIScreen mainScreen] bounds];
@@ -201,7 +201,7 @@
     //debug
     
     // Do custom rotation stuff now
-    DLOG(@"viewWillTransitionToSize to %fx%f", size.width, size.height);
+    //DLOG(@"viewWillTransitionToSize to %fx%f", size.width, size.height);
     //DLOG(@"viewWillTransitionToSize current size %fx%f", screenSize.width, screenSize.height);
     
     // [SCROLL VIEW]
@@ -221,10 +221,48 @@
         [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
     }
     
-    [SizeHelper dumpScrollViewInfo:_scrollView];
+    //[SizeHelper dumpScrollViewInfo:_scrollView];
     
 }
 
+#pragma mark Zooming
+- (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    //DLOG(@"viewForZoomingInScrollView");
+    
+    //CHECK IF WE HAVE COMIC OPEN!
+    
+    // Specify which object you should zoom - Zoom the entire scrollView
+    return [self _getZoomableView];
+}
+
+- (void) scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    //DLOG(@"scrollViewDidZoom");
+}
+
+- (void) scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
+{
+    //DLOG(@"scrollViewWillBeginZooming");
+}
+
+- (void) scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
+{
+    //DLOG(@"scrollViewDidEndZooming");
+    
+    // The setPaging here exists so that when you zoom and move that zoom rect,
+    // the scrollView doesn't automatically try to page to an edge. This has the
+    // effect of "sticking" to an edge when you don't want that to happen.
+    
+    if (scale != 1.0)
+    {
+        [_scrollView setPagingEnabled:NO];
+    }
+    else
+    {
+        [_scrollView setPagingEnabled:YES];
+    }
+}
 
 #pragma mark Initializers
 
@@ -310,10 +348,6 @@
 	[zoomableView setFrame:[_sizeHelper getContentRect]];
 	[zoomableView setAutoresizesSubviews:YES];
     
-    //HACK
-    [zoomableView setBackgroundColor:UIColorFromRGB(0x00ff00)];
-    //HACK
-    
     // Add the zoomableView to the scrollView. We now have _scrollView->zoomableView.
 	[_scrollView addSubview:zoomableView];
     zoomableView =  Nil;
@@ -386,11 +420,6 @@
     _scrollView.contentOffset = [_sizeHelper getOffsetforPage:startPage];
     g_oldScrollPage = startPage;
     g_newScrollPage = startPage;
-    
-    
-    //HACK
-    [SizeHelper dumpScrollViewInfo:_scrollView];
-    //
     
     return true;
 }
@@ -468,30 +497,47 @@
     DLOG(@"handleTap");
     
 }
-/*
-- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center {
-	
+
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
+{
+
+    DLOG(@"Handle zoomRectForScale");
+    
     CGRect zoomRect;
 	
+    // The zoom rect is in the content view's coordinates.
+    // At a zoom scale of 1.0, it would be the size of the
+    // imageScrollView's bounds.
+    
+    // As the zoom scale decreases, so more content is visible,
+    // the size of the rect grows.
     zoomRect.size.height = [_scrollView frame].size.height / scale;
     zoomRect.size.width  = [_scrollView frame].size.width  / scale;
+    
+#warning Not sure if we need the other center here. It's commented out, but look into it.
+    //DLOG(@"scrollView scale=%f, width=%f, height=%f", scale, zoomRect.size.width, zoomRect.size.height);
+    //DLOG(@"passed in center.x=%f, center.y=%f", center.x, center.y);
+    
+    //center = [_scrollView convertPoint:center
+    //                          fromView:[[[self scrollView] subviews] objectAtIndex:0] ];
+
+    //DLOG(@"zoomView center.x=%f, center.y=%f", center.x, center.y);
 	
-    center = [_scrollView convertPoint:center
-							  fromView:[[[self scrollView] subviews] objectAtIndex:0] ];
-	
+    // choose an origin so as to get the right center.
     zoomRect.origin.x    = center.x - ((zoomRect.size.width / 2.0));
     zoomRect.origin.y    = center.y - ((zoomRect.size.height / 2.0));
 	
     return zoomRect;
 }
- */
+
 - (void) handleDoubleTap:(UITapGestureRecognizer*)recognizer
 {
     /*
+     Do we need this????
 	if (!g_openedOk)
 	{
 		return;
-	}
+	}*/
 	
 	float newScale = [self.scrollView zoomScale] * 2.0;
 	
@@ -506,7 +552,7 @@
         CGRect zoomRect = [self zoomRectForScale:newScale
 									  withCenter:[recognizer locationInView:recognizer.view]];
         [self.scrollView zoomToRect:zoomRect animated:YES];
-    }*/
+    }
     
     DLOG(@"handleDoubleTap");
 }
@@ -527,7 +573,8 @@
 
 - (BOOL) _insertPage: (int) page
 {
-    DLOG(@"_insertPage");
+
+    //DLOG(@"_insertPage");
     
     UIImage *comicImage = Nil;
     UIImageView *imageView;
@@ -662,8 +709,6 @@ DONE:
 DONE:
 	// Start scrolling again
 	[scrollView setScrollEnabled:YES];
-    
-    [SizeHelper dumpScrollViewInfo:_scrollView];
 }
 
 
