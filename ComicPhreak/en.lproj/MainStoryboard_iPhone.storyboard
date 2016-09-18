@@ -137,10 +137,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         </textAttributes>
                     </navigationBar>
-                    <toolbar key="toolbar" hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="74B-8A-5LW">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="LSZ-2i-8E7" kind="relationship" relationship="rootViewController" id="oOB-Ld-Vfg"/>
                     </connections>
