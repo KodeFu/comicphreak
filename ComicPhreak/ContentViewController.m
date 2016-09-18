@@ -141,8 +141,24 @@
     // 5. Initiailize Gesture Recognizers
     if (![self _initializeGestureRecognizers]) return;
 
+
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setHidesBarsOnTap:YES];
     
-    //[[self.navigationController navigationBar] setHidden:YES];
+    _toolBar = self.navigationController.toolbar;
+    
+    CGRect newRect;
+    newRect.origin.x = 0;
+    newRect.origin.y = _scrollView.frame.size.height - _toolBar.frame.size.height;
+    newRect.size.width = _scrollView.frame.size.width;
+    newRect.size.height = _toolBar.frame.size.height;
+    //[_toolBar setFrame:newRect];
+    
+    //self.navigationController.toolbar.frame = newRect;
+    
+    DLOG(@"toolbar %f %f %f %f", _toolBar.frame.origin.x, _toolBar.frame.origin.y, _toolBar.frame.size.width, _toolBar.frame.size.height);
+    [self.view bringSubviewToFront:_toolBar];
 }
 
 
@@ -151,6 +167,9 @@
     DLOG(@"viewWillDisappear");
     // Kill the thread -- HACK SHOULD HAPPEN WHEN BACK IS PRESSED!
     //g_killThread = YES;
+    
+    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController setHidesBarsOnTap:NO];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -193,7 +212,7 @@
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
-    //[SizeHelper dumpScrollViewInfo:_scrollView];
+    [SizeHelper dumpScrollViewInfo:_scrollView];
     
     //debug
     //CGRect screenBound = [[UIScreen mainScreen] bounds];
@@ -207,23 +226,60 @@
     // [SCROLL VIEW]
     // Resize the scrollView. Note: This is necessary, since it doesn't seem like
     // it's getting resized from the parent view.
+    [_scrollView setAutoresizesSubviews:NO];
     [_scrollView setFrame:CGRectMake(0, 0, size.width, size.height)];
     
     // Set the scrollView content size and starting location
     _scrollView.contentSize = [_sizeHelper getContentSizeForDeviceSize:size];
     _scrollView.contentOffset = [_sizeHelper getOffsetforPage:g_oldScrollPage ForDeviceSize:size];
 
+    [[self _getZoomableView] setAutoresizesSubviews:NO];
     [[self _getZoomableView] setFrame:CGRectMake(0, 0, [_sizeHelper getContentSizeForDeviceSize:size].width, size.height)];
     
     // Resize the page subviews
    	for(UIImageView *subview in [[self _getZoomableView] subviews])
     {
+        [subview setAutoresizesSubviews:NO];
         [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
     }
     
-    //[SizeHelper dumpScrollViewInfo:_scrollView];
+    
+    //DLOG(@"---> toolbar --     (%5.0f, %5.0f) %5.0fx%5.0f",
+      //   _toolBar.frame.origin.x, _toolBar.frame.origin.y,
+      //   _toolBar.frame.size.width, _toolBar.frame.size.height);
+    
+    
+    //[[self.navigationController navigationBar] setHidden:YES];
+    //self.navigationController.navigationBar
+    DLOG(@"---> navigation --     (%5.0f, %5.0f) %5.0fx%5.0f",
+         self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y,
+         self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
+
+    
+    CGRect newRect;
+    newRect.origin.x = 0;
+    newRect.origin.y = _scrollView.frame.size.height - _toolBar.frame.size.height;
+    newRect.size.width = _scrollView.frame.size.width;
+    newRect.size.height = _toolBar.frame.size.height;
+    //[_toolBar setFrame:newRect];
+    
+    
+    [SizeHelper dumpScrollViewInfo:_scrollView];
     
 }
+/*
+- (CGSize)sizeForChildContentContainer:(id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize
+{
+    DLOG(@"parentSize width=%f, height=%f", parentSize.width, parentSize.height);
+    
+    CGSize size;
+    
+    size.width = 0.0f;
+    size.height = 0.0f;
+    
+    
+    return size;
+}*/
 
 #pragma mark Zooming
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -327,6 +383,8 @@
     [_scrollView setContentSize:[_sizeHelper getContentSize]];
     [_scrollView setContentOffset:[_sizeHelper getOffsetforPage:0]];
     
+    [_scrollView setAutoresizesSubviews:NO];
+    
     // Preferences
     [_scrollView setDecelerationRate:UIScrollViewDecelerationRateFast];
     
@@ -346,7 +404,7 @@
     // the content since it is the container view. Second in the hierarchy.
 	[zoomableView setTag:-99]; // Set tag to -99 so it doesn't get deleted
 	[zoomableView setFrame:[_sizeHelper getContentRect]];
-	[zoomableView setAutoresizesSubviews:YES];
+	[zoomableView setAutoresizesSubviews:NO];
     
     // Add the zoomableView to the scrollView. We now have _scrollView->zoomableView.
 	[_scrollView addSubview:zoomableView];
@@ -429,13 +487,13 @@
     /////////////////////
 	// Add the gesture recognizers
 	/////////////////////
-	
+	/*
 	// Single Tap
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
 											 initWithTarget:self
 											 action:@selector(handleTap:)];
     tapRecognizer.numberOfTapsRequired = 1;
-    [self.scrollView addGestureRecognizer:tapRecognizer];
+    [self.scrollView addGestureRecognizer:tapRecognizer];*/
     
 	// Double Tap
 	UITapGestureRecognizer *tapRecognizerDouble = [[UITapGestureRecognizer alloc]
@@ -443,12 +501,12 @@
 												   action:@selector(handleDoubleTap:)];
     tapRecognizerDouble.numberOfTapsRequired = 2;
     
-    // Always try double tap first, then fail to single tap
-	[tapRecognizer requireGestureRecognizerToFail : tapRecognizerDouble];
+    // Always try double tap first, then fail to single tap (which is in the navigation controller)
+    [self.navigationController.barHideOnTapGestureRecognizer requireGestureRecognizerToFail:tapRecognizerDouble];
     
     [self.scrollView addGestureRecognizer:tapRecognizerDouble];
 	
-	tapRecognizer = Nil;
+//	tapRecognizer = Nil;
 	tapRecognizerDouble = Nil;
     
     return true;
@@ -493,6 +551,19 @@
 		[self animateUserInterface];
 	}
      */
+    
+    
+    //[[self.navigationController navigationBar] setHidden:self.navigationController.isToolbarHidden? NO:YES];
+    
+    //[_scrollView bringSubviewToFront:[[self.navigationController navigationController] view]];
+    //[[self.navigationController navigationBar] setHidden:YES];
+//    [self.navigationController setNavigationBarHidden:self.navigationController.navigationBar.isHidden?NO:YES animated:YES];;
+//    [self.navigationController setToolbarHidden:self.navigationController.toolbar.isHidden?NO:YES animated:YES];
+    //[[self.navigationController navigationBar] setHidden:self.navigationController.navigationBar.isHidden?NO:YES];
+    //[_scrollView.superview bringSubviewToFront:self.navigationController.navigationBar];
+    //[_toolBar setHidden:_toolBar.isHidden?NO:YES];
+    
+    
     
     DLOG(@"handleTap");
     
@@ -574,7 +645,7 @@
 - (BOOL) _insertPage: (int) page
 {
 
-    //DLOG(@"_insertPage");
+    DLOG(@"_insertPage");
     
     UIImage *comicImage = Nil;
     UIImageView *imageView;
@@ -617,6 +688,8 @@
     [imageView setFrame:[_sizeHelper getRectForPage:page]];
     //DLOG(@"imageView page: %d setFrame (%f, %f, %f, %f)", page, imageView.frame.origin.x, imageView.frame.origin.y, imageView.frame.size.width, imageView.frame.size.height );
 	[imageView setTag:page];
+    
+    [imageView setAutoresizesSubviews:NO];
 	
 	// Add the subview
     [[self _getZoomableView] addSubview:imageView];
@@ -836,4 +909,35 @@ KILLME:
 }
 
 
+- (IBAction)OnBarButtonItemPressed:(id)sender
+{
+    
+    DLOG(@"- SuperView Frame     (%5.0f, %5.0f) %5.0fx%5.0f",
+         _scrollView.superview.frame.origin.x, _scrollView.superview.frame.origin.y,
+         _scrollView.superview.frame.size.width, _scrollView.superview.frame.size.height);
+
+    [SizeHelper dumpScrollViewInfo:_scrollView];
+    
+    //debug
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    //debug
+    
+    // Do custom rotation stuff now
+    //DLOG(@"viewWillTransitionToSize to %fx%f", size.width, size.height);
+    //DLOG(@"viewWillTransitionToSize current size %fx%f", screenSize.width, screenSize.height);
+    
+    // [SCROLL VIEW]
+    // Resize the scrollView. Note: This is necessary, since it doesn't seem like
+    // it's getting resized from the parent view.
+    [_scrollView setAutoresizesSubviews:NO];
+    [_scrollView setFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
+    
+    DLOG(@"- SuperView Frame     (%5.0f, %5.0f) %5.0fx%5.0f",
+         _scrollView.superview.frame.origin.x, _scrollView.superview.frame.origin.y,
+         _scrollView.superview.frame.size.width, _scrollView.superview.frame.size.height);
+    
+    [SizeHelper dumpScrollViewInfo:_scrollView];
+    
+}
 @end
