@@ -848,36 +848,4 @@ KILLME:
     } // @autoreleasepool
 }
 
-
-- (IBAction)OnBarButtonItemPressed:(id)sender
-{
-    
-    DLOG(@"- SuperView Frame     (%5.0f, %5.0f) %5.0fx%5.0f",
-         _scrollView.superview.frame.origin.x, _scrollView.superview.frame.origin.y,
-         _scrollView.superview.frame.size.width, _scrollView.superview.frame.size.height);
-
-    [SizeHelper dumpScrollViewInfo:_scrollView];
-    
-    //debug
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    //debug
-    
-    // Do custom rotation stuff now
-    //DLOG(@"viewWillTransitionToSize to %fx%f", size.width, size.height);
-    //DLOG(@"viewWillTransitionToSize current size %fx%f", screenSize.width, screenSize.height);
-    
-    // [SCROLL VIEW]
-    // Resize the scrollView. Note: This is necessary, since it doesn't seem like
-    // it's getting resized from the parent view.
-    [_scrollView setAutoresizesSubviews:NO];
-    [_scrollView setFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
-    
-    DLOG(@"- SuperView Frame     (%5.0f, %5.0f) %5.0fx%5.0f",
-         _scrollView.superview.frame.origin.x, _scrollView.superview.frame.origin.y,
-         _scrollView.superview.frame.size.width, _scrollView.superview.frame.size.height);
-    
-    [SizeHelper dumpScrollViewInfo:_scrollView];
-    
-}
 @end
