@@ -146,19 +146,6 @@
     [self.navigationController setToolbarHidden:NO];
     [self.navigationController setHidesBarsOnTap:YES];
     
-    _toolBar = self.navigationController.toolbar;
-    
-    CGRect newRect;
-    newRect.origin.x = 0;
-    newRect.origin.y = _scrollView.frame.size.height - _toolBar.frame.size.height;
-    newRect.size.width = _scrollView.frame.size.width;
-    newRect.size.height = _toolBar.frame.size.height;
-    //[_toolBar setFrame:newRect];
-    
-    //self.navigationController.toolbar.frame = newRect;
-    
-    DLOG(@"toolbar %f %f %f %f", _toolBar.frame.origin.x, _toolBar.frame.origin.y, _toolBar.frame.size.width, _toolBar.frame.size.height);
-    [self.view bringSubviewToFront:_toolBar];
 }
 
 
@@ -242,27 +229,6 @@
         [subview setAutoresizesSubviews:NO];
         [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
     }
-    
-    
-    //DLOG(@"---> toolbar --     (%5.0f, %5.0f) %5.0fx%5.0f",
-      //   _toolBar.frame.origin.x, _toolBar.frame.origin.y,
-      //   _toolBar.frame.size.width, _toolBar.frame.size.height);
-    
-    
-    //[[self.navigationController navigationBar] setHidden:YES];
-    //self.navigationController.navigationBar
-    DLOG(@"---> navigation --     (%5.0f, %5.0f) %5.0fx%5.0f",
-         self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y,
-         self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-
-    
-    CGRect newRect;
-    newRect.origin.x = 0;
-    newRect.origin.y = _scrollView.frame.size.height - _toolBar.frame.size.height;
-    newRect.size.width = _scrollView.frame.size.width;
-    newRect.size.height = _toolBar.frame.size.height;
-    //[_toolBar setFrame:newRect];
-    
     
     [SizeHelper dumpScrollViewInfo:_scrollView];
     
@@ -551,19 +517,6 @@
 		[self animateUserInterface];
 	}
      */
-    
-    
-    //[[self.navigationController navigationBar] setHidden:self.navigationController.isToolbarHidden? NO:YES];
-    
-    //[_scrollView bringSubviewToFront:[[self.navigationController navigationController] view]];
-    //[[self.navigationController navigationBar] setHidden:YES];
-//    [self.navigationController setNavigationBarHidden:self.navigationController.navigationBar.isHidden?NO:YES animated:YES];;
-//    [self.navigationController setToolbarHidden:self.navigationController.toolbar.isHidden?NO:YES animated:YES];
-    //[[self.navigationController navigationBar] setHidden:self.navigationController.navigationBar.isHidden?NO:YES];
-    //[_scrollView.superview bringSubviewToFront:self.navigationController.navigationBar];
-    //[_toolBar setHidden:_toolBar.isHidden?NO:YES];
-    
-    
     
     DLOG(@"handleTap");
     

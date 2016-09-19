@@ -12,8 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property NSString *comicFileName;
-- (IBAction)OnBarButtonItemPressed:(id)sender;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 
 @end
