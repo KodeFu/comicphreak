@@ -93,7 +93,12 @@
                         </subviews>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item 1" id="5aw-8p-0gf"/>
+                        <barButtonItem title="Item 2" id="lhO-yt-cJo"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="1km-Sk-rnC"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navigationItem" destination="1km-Sk-rnC" id="uLF-W5-FVr"/>
                         <outlet property="scrollView" destination="jBG-rj-2qS" id="vZR-Hd-dbe"/>
@@ -174,10 +179,10 @@
             </objects>
             <point key="canvasLocation" x="-1464" y="2424"/>
         </scene>
-        <!--Library Navigation View Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="gO7-Sj-eKG">
             <objects>
-                <navigationController definesPresentationContext="YES" id="6wB-IN-VXd" userLabel="Library Navigation View Controller" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="6wB-IN-VXd" userLabel="Navigation View Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Library" image="glyphicons_029_notes_2.png" id="fY9-zg-IAj"/>
                     <navigationItem key="navigationItem" id="G5O-3j-dML"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ryC-Je-aLG">
