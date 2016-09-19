@@ -132,7 +132,7 @@
         <scene sceneID="bHq-Yp-2xk">
             <objects>
                 <navigationController id="SYA-Jq-1cN" userLabel="Groups Navigation View Controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="xcM-zP-85c"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="glyphicons_012_heart.png" id="xcM-zP-85c"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="he3-HP-l3b">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -205,6 +205,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="glyphicons_012_heart.png" width="24" height="22"/>
         <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
