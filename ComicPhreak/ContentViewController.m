@@ -233,19 +233,6 @@
     [SizeHelper dumpScrollViewInfo:_scrollView];
     
 }
-/*
-- (CGSize)sizeForChildContentContainer:(id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize
-{
-    DLOG(@"parentSize width=%f, height=%f", parentSize.width, parentSize.height);
-    
-    CGSize size;
-    
-    size.width = 0.0f;
-    size.height = 0.0f;
-    
-    
-    return size;
-}*/
 
 #pragma mark Zooming
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
