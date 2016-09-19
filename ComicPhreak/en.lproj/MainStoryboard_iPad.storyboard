@@ -27,11 +27,11 @@
                                 <rect key="frame" x="0.0" y="130" width="768" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4gl-9F-d2k" id="efD-0o-LgO">
-                                    <frame key="frameInset" width="730" height="90"/>
+                                    <frame key="frameInset" width="702" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bq1-lL-ivz">
-                                            <frame key="frameInset" minX="73" minY="34.78%" width="82.19%" height="21"/>
+                                            <frame key="frameInset" minX="73" minY="34.78%" width="85.85%" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,7 +78,7 @@
         <!--Content View Controller-->
         <scene sceneID="o10-eW-O2P">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="zwu-9I-rxG" customClass="ContentViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="zwu-9I-rxG" customClass="ContentViewController" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="NF2-MT-mTB">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -95,6 +95,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1km-Sk-rnC"/>
                     <connections>
+                        <outlet property="navigationItem" destination="1km-Sk-rnC" id="uLF-W5-FVr"/>
                         <outlet property="scrollView" destination="jBG-rj-2qS" id="vZR-Hd-dbe"/>
                     </connections>
                 </viewController>
