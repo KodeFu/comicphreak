@@ -157,6 +157,22 @@
     
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController setHidesBarsOnTap:NO];
+
+    
+    // Remove all views except the one that we're viewing. I'm not sure
+    // if this is a bug or not, but with more than one view the animation
+    // back to the UITableView looks shows the previous scrollView's page
+    // before showing the table. When we are at page 0, there is no issue.
+    // So, the solution is to remove all views but the current one.
+    // Remove any previous subviews
+    for(UIView *subview in [[self _getZoomableView] subviews])
+    {
+        if (subview.tag != g_oldScrollPage)
+        {
+            [subview removeFromSuperview];
+        }
+    }
+
 }
 
 - (void) viewDidDisappear:(BOOL)animated
