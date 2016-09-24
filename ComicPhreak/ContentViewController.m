@@ -674,7 +674,7 @@ DONE:
     
     // Get the new pages using the scrollView offset. We skip getting the...
     CGFloat pageWidth = [SizeHelper getDeviceWidth];
-    g_newScrollPage = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    g_newScrollPage = floor((_scrollView.contentOffset.x - (pageWidth / 2 * _scrollView.zoomScale)) / (pageWidth*_scrollView.zoomScale)) + 1;
     g_newScrollPage = [_sizeHelper getTranslatedPage:g_newScrollPage];
 
     // Note: The caching thread works on g_newScrollPage, so when we get a new page, the thread
