@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property NSString *comicFileName;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
+- (IBAction)ButtonTwoPressed:(id)sender;
 
 @end

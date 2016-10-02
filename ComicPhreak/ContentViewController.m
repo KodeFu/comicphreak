@@ -211,51 +211,80 @@
 
 #pragma mark Rotation Methods
 
+- (void) dumpSomeCrap:(CGSize) size
+{
+    DLOG(@"viewWillTransitionToSize %fx%f", size.width, size.height);
+    DLOG(@"_scrollView (x=%f, y=%f) %fx%f", _scrollView.frame.origin.x, _scrollView.frame.origin.y, _scrollView.frame.size.width, _scrollView.frame.size.height);
+    DLOG(@"😍 _scrollView contentSize (x=%f, y=%f) %fx%f", _scrollView.contentOffset.x, _scrollView.contentOffset.y, _scrollView.contentSize.width, _scrollView.contentSize.height);
+    
+    UIView *zoomable = [self _getZoomableView];
+    DLOG(@"_zoomableView (x=%f, y=%f) %fx%f", zoomable.frame.origin.x, zoomable.frame.origin.y, zoomable.frame.size.width, zoomable.frame.size.height);
+}
+
 -(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
+    // ***** Will execute before rotation *****
+    
+    // Dpn't scroll while rotating
+    [_scrollView setScrollEnabled:NO];
+    
+    [self dumpSomeCrap:size];
+    
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-    [SizeHelper dumpScrollViewInfo:_scrollView];
-    
-    //debug
-    //CGRect screenBound = [[UIScreen mainScreen] bounds];
-    //CGSize screenSize = screenBound.size;
-    //debug
-    
-    // Do custom rotation stuff now
-    //DLOG(@"viewWillTransitionToSize to %fx%f", size.width, size.height);
-    //DLOG(@"viewWillTransitionToSize current size %fx%f", screenSize.width, screenSize.height);
-    
-    // [SCROLL VIEW]
-    // Resize the scrollView. Note: This is necessary, since it doesn't seem like
-    // it's getting resized from the parent view.
-    [_scrollView setAutoresizesSubviews:NO];
-    [_scrollView setFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    // Set the scrollView content size and starting location
-    _scrollView.contentSize = [_sizeHelper getContentSizeForDeviceSize:size];
-    _scrollView.contentOffset = [_sizeHelper getOffsetforPage:g_oldScrollPage ForDeviceSize:size];
 
-    [[self _getZoomableView] setAutoresizesSubviews:NO];
-    [[self _getZoomableView] setFrame:CGRectMake(0, 0, [_sizeHelper getContentSizeForDeviceSize:size].width, size.height)];
     
-    // Resize the page subviews
-   	for(UIImageView *subview in [[self _getZoomableView] subviews])
-    {
-        [subview setAutoresizesSubviews:NO];
-        [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
-    }
-    
-    [SizeHelper dumpScrollViewInfo:_scrollView];
+    // Cache these value, since accessing may cause other methods to execute; e.g.
+    // viewForZoomingInScrollView is called when accessing zoomScale.
+    CGPoint savedContentOffset = _scrollView.contentOffset;
+    float savedZoomScale = _scrollView.zoomScale;
+ 
+    [coordinator animateAlongsideTransition:^(id  _Nonnull context) {
+        
+        // ***** Will execute during rotation *****
+
+        // Resize the pages subviews
+        for(UIImageView *subview in [[self _getZoomableView] subviews])
+        {
+            // Do we need to handle zoom here?
+            [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
+        }
+        
+        // Resize the scrollView
+        [_scrollView setFrame:CGRectMake(0, 0, size.width, size.height)];
+        [_scrollView setContentSize: CGSizeMake([comic comicTotalPages] * size.width * savedZoomScale, size.height * savedZoomScale) ];
+        
+        // Set the scrollView center
+        float currentCenterX = savedContentOffset.x + (size.height / 2.0 * savedZoomScale);
+        float currentCenterY = savedContentOffset.y + (size.width / 2.0 * savedZoomScale);
+        
+        currentCenterX = currentCenterX / size.height * size.width - (size.width / 2.0 * savedZoomScale);
+        currentCenterY = currentCenterY / size.width * size.height - (size.height / 2.0 * savedZoomScale);
+        [_scrollView setContentOffset:CGPointMake(currentCenterX, currentCenterY)];
+        
+        // Resize zoomable view
+        [[self _getZoomableView] setFrame:CGRectMake(0, 0, [comic comicTotalPages] * size.width * savedZoomScale, size.height * savedZoomScale)];
+
+        
+    } completion:^(id  _Nonnull context) {
+        
+        // ***** Will execute after rotation *****
+        
+
+        
+        [_scrollView setScrollEnabled:YES];
+        
+        [self dumpSomeCrap:size];
+    }];
     
 }
 
 #pragma mark Zooming
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    //DLOG(@"viewForZoomingInScrollView");
     
     //CHECK IF WE HAVE COMIC OPEN!
+    
+    DLOG(@"viewForZoomingInScrollView %f %f", _scrollView.contentOffset.x, _scrollView.contentOffset.y);
     
     // Specify which object you should zoom - Zoom the entire scrollView
     return [self _getZoomableView];
@@ -538,8 +567,8 @@
     
     // As the zoom scale decreases, so more content is visible,
     // the size of the rect grows.
-    zoomRect.size.height = [_scrollView frame].size.height / scale;
-    zoomRect.size.width  = [_scrollView frame].size.width  / scale;
+    zoomRect.size.height = _scrollView.frame.size.height / scale;
+    zoomRect.size.width  = _scrollView.frame.size.width  / scale;
     
 #warning Not sure if we need the other center here. It's commented out, but look into it.
     //DLOG(@"scrollView scale=%f, width=%f, height=%f", scale, zoomRect.size.width, zoomRect.size.height);
@@ -864,4 +893,8 @@ KILLME:
     } // @autoreleasepool
 }
 
+- (IBAction)ButtonTwoPressed:(id)sender
+{
+    [SizeHelper dumpScrollViewInfo:_scrollView];
+}
 @end
