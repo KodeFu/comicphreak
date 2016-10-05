@@ -221,6 +221,20 @@
     DLOG(@"_zoomableView (x=%f, y=%f) %fx%f", zoomable.frame.origin.x, zoomable.frame.origin.y, zoomable.frame.size.width, zoomable.frame.size.height);
 }
 
+/*
+ Notes:
+ - There is a slight "bubble" feel when we rotate. I think it's doing the right thing, but maybe some tweaking to where
+   we adjust the sizes of the content view, scroll view or zoomable might fix it; i.e. move to pre, during and post 
+   animation. Not a big deal, however.
+ - A more important issue is that after rotation of a zoomed view, our center point is incorrect. This has to do with 
+   spacing between the pages. Either we need to adjust the center point to compenstate for the spacing, or remove spacing.
+   Something. It works, but it'll be slightly off on zoom. This should be fixed.
+ - General FYI, I'm still not clear on what we have to adjust when zoomed. I feel like why do we have to adjust content
+   size to be a fact of the scale, when scale is a layer on top of the zoomable view? Something like that. I get the
+   impression that we should be working in non-zoom coordinates and let the layer handle the zooming. It's a confusing
+   matter. If we don't have to deal with zoom, then we get right of the scale factor multiplier. This is an area of 
+   investigation, but need to walk away from it for a bit.
+ */
 -(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     // ***** Will execute before rotation *****
