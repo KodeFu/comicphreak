@@ -228,10 +228,7 @@
     // Dpn't scroll while rotating
     [_scrollView setScrollEnabled:NO];
     
-    [self dumpSomeCrap:size];
-    
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
     
     // Cache these value, since accessing may cause other methods to execute; e.g.
     // viewForZoomingInScrollView is called when accessing zoomScale.
@@ -242,13 +239,6 @@
         
         // ***** Will execute during rotation *****
 
-        // Resize the pages subviews
-        for(UIImageView *subview in [[self _getZoomableView] subviews])
-        {
-            // Do we need to handle zoom here?
-            [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
-        }
-        
         // Resize the scrollView
         [_scrollView setFrame:CGRectMake(0, 0, size.width, size.height)];
         [_scrollView setContentSize: CGSizeMake([comic comicTotalPages] * size.width * savedZoomScale, size.height * savedZoomScale) ];
@@ -263,17 +253,21 @@
         
         // Resize zoomable view
         [[self _getZoomableView] setFrame:CGRectMake(0, 0, [comic comicTotalPages] * size.width * savedZoomScale, size.height * savedZoomScale)];
+        
+        // Resize the pages subviews
+        for(UIImageView *subview in [[self _getZoomableView] subviews])
+        {
+            // Do we need to handle zoom here?
+            [subview setFrame:[_sizeHelper getRectForPage:subview.tag ForDeviceSize:size]];
+        }
 
         
     } completion:^(id  _Nonnull context) {
         
         // ***** Will execute after rotation *****
         
-
-        
         [_scrollView setScrollEnabled:YES];
-        
-        [self dumpSomeCrap:size];
+
     }];
     
 }
