@@ -239,7 +239,7 @@
 {
     // ***** Will execute before rotation *****
     
-    // Dpn't scroll while rotating
+    // Don't scroll while rotating
     [_scrollView setScrollEnabled:NO];
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
