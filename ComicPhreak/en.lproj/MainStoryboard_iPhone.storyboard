@@ -44,13 +44,11 @@
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vXD-9j-mYW">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vXD-9j-mYW">
                                             <frame key="frameInset" minX="6" minY="6" width="37" height="57"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
+                                            <state key="normal" image="error_no_image.png"/>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -205,6 +203,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="error_no_image.png" width="650" height="1000"/>
         <image name="glyphicons_012_heart.png" width="24" height="22"/>
         <image name="glyphicons_029_notes_2.png" width="20" height="27"/>
     </resources>

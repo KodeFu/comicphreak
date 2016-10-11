@@ -82,6 +82,7 @@
 		B79D1D091C89D02B009B385A /* testDirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D081C89D02B009B385A /* testDirectoryManager.m */; };
 		B79D1D0B1C89D03D009B385A /* testPathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D0A1C89D03D009B385A /* testPathHelper.m */; };
 		B79D1D0D1C89D063009B385A /* testDbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D0C1C89D063009B385A /* testDbManager.m */; };
+		B7A21B021DAD7050004401FF /* error_no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A21B011DAD7050004401FF /* error_no_image.png */; };
 		B7A3273F1C854292005AECCE /* blake2s.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A3273B1C854292005AECCE /* blake2s.cpp */; };
 		B7A327581C85438B005AECCE /* hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327521C85438B005AECCE /* hash.cpp */; };
 		B7A327591C85438B005AECCE /* headers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327541C85438B005AECCE /* headers.cpp */; };
@@ -273,6 +274,7 @@
 		B79D1D081C89D02B009B385A /* testDirectoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDirectoryManager.m; sourceTree = "<group>"; };
 		B79D1D0A1C89D03D009B385A /* testPathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPathHelper.m; sourceTree = "<group>"; };
 		B79D1D0C1C89D063009B385A /* testDbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDbManager.m; sourceTree = "<group>"; };
+		B7A21B011DAD7050004401FF /* error_no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_no_image.png; sourceTree = "<group>"; };
 		B7A327391C854271005AECCE /* array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = array.hpp; sourceTree = "<group>"; };
 		B7A3273B1C854292005AECCE /* blake2s.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blake2s.cpp; sourceTree = "<group>"; };
 		B7A3273C1C854292005AECCE /* blake2s.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blake2s.hpp; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 		B7C7EA181915BDC2003F3693 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B7A21B011DAD7050004401FF /* error_no_image.png */,
 				B73238911D7D2D8100A63F76 /* glyphicons-140-adjust-alt.png */,
 				B766ED9F193989CB006D1DF6 /* glyphicons_012_heart.png */,
 				B766EDA0193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png */,
@@ -786,6 +789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B766EDA3193989CB006D1DF6 /* glyphicons_012_heart.png in Resources */,
+				B7A21B021DAD7050004401FF /* error_no_image.png in Resources */,
 				B766EDA5193989CB006D1DF6 /* glyphicons_027_search.png in Resources */,
 				B766EDA6193989CB006D1DF6 /* glyphicons_029_notes_2.png in Resources */,
 				B766EDA4193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png in Resources */,
