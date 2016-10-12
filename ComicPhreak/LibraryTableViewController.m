@@ -10,7 +10,7 @@
 #import "ContentViewController.h"
 #import "DbManager.h"
 #import "Debug.h"
-#import "TableViewCell.h"
+#import "LibraryTableViewCell.h"
 
 #import "DirectoryManager.h"
 
@@ -123,7 +123,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    LibraryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Get record from cached database
     NSDictionary *record = [SuperMonsterList objectAtIndex:[indexPath row]];
@@ -197,7 +197,7 @@
 {
     if ([segue.identifier isEqualToString:@"ContentViewController"])
     {
-        TableViewCell *cell = sender;
+        LibraryTableViewCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         
         ContentViewController *contentViewController = [segue destinationViewController];

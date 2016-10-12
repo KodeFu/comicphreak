@@ -71,7 +71,6 @@
 		B762E24918BAC57D0041F579 /* volume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B762E1D418BAC57D0041F579 /* volume.cpp */; settings = {COMPILER_FLAGS = "-Wno-parentheses"; }; };
 		B762E24D18BAC57D0041F579 /* Unrar4iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B762E1DA18BAC57D0041F579 /* Unrar4iOS.mm */; };
 		B762E25018BD7A9E0041F579 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B762E24F18BD7A9E0041F579 /* ContentViewController.m */; };
-		B766ED9E19396AD9006D1DF6 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B766ED9D19396AD9006D1DF6 /* TableViewCell.m */; };
 		B766EDA3193989CB006D1DF6 /* glyphicons_012_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = B766ED9F193989CB006D1DF6 /* glyphicons_012_heart.png */; };
 		B766EDA4193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png in Resources */ = {isa = PBXBuildFile; fileRef = B766EDA0193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png */; };
 		B766EDA5193989CB006D1DF6 /* glyphicons_027_search.png in Resources */ = {isa = PBXBuildFile; fileRef = B766EDA1193989CB006D1DF6 /* glyphicons_027_search.png */; };
@@ -83,6 +82,7 @@
 		B79D1D0B1C89D03D009B385A /* testPathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D0A1C89D03D009B385A /* testPathHelper.m */; };
 		B79D1D0D1C89D063009B385A /* testDbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D0C1C89D063009B385A /* testDbManager.m */; };
 		B7A21B021DAD7050004401FF /* error_no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A21B011DAD7050004401FF /* error_no_image.png */; };
+		B7A21B051DAEB315004401FF /* LibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A21B041DAEB315004401FF /* LibraryTableViewCell.m */; };
 		B7A3273F1C854292005AECCE /* blake2s.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A3273B1C854292005AECCE /* blake2s.cpp */; };
 		B7A327581C85438B005AECCE /* hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327521C85438B005AECCE /* hash.cpp */; };
 		B7A327591C85438B005AECCE /* headers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327541C85438B005AECCE /* headers.cpp */; };
@@ -261,8 +261,6 @@
 		B762E1DB18BAC57D0041F579 /* Unrar4iOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unrar4iOS_Prefix.pch; sourceTree = "<group>"; };
 		B762E24E18BD7A9E0041F579 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		B762E24F18BD7A9E0041F579 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
-		B766ED9C19396AD9006D1DF6 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
-		B766ED9D19396AD9006D1DF6 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		B766ED9F193989CB006D1DF6 /* glyphicons_012_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_012_heart.png; sourceTree = "<group>"; };
 		B766EDA0193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_013_beach_umbrella.png; sourceTree = "<group>"; };
 		B766EDA1193989CB006D1DF6 /* glyphicons_027_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_027_search.png; sourceTree = "<group>"; };
@@ -275,6 +273,8 @@
 		B79D1D0A1C89D03D009B385A /* testPathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPathHelper.m; sourceTree = "<group>"; };
 		B79D1D0C1C89D063009B385A /* testDbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDbManager.m; sourceTree = "<group>"; };
 		B7A21B011DAD7050004401FF /* error_no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_no_image.png; sourceTree = "<group>"; };
+		B7A21B031DAEB315004401FF /* LibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTableViewCell.h; sourceTree = "<group>"; };
+		B7A21B041DAEB315004401FF /* LibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewCell.m; sourceTree = "<group>"; };
 		B7A327391C854271005AECCE /* array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = array.hpp; sourceTree = "<group>"; };
 		B7A3273B1C854292005AECCE /* blake2s.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blake2s.cpp; sourceTree = "<group>"; };
 		B7A3273C1C854292005AECCE /* blake2s.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blake2s.hpp; sourceTree = "<group>"; };
@@ -679,8 +679,6 @@
 			children = (
 				B7F1368817DD36A0003674A5 /* MainStoryboard_iPad.storyboard */,
 				B7F1368517DD36A0003674A5 /* MainStoryboard_iPhone.storyboard */,
-				B766ED9C19396AD9006D1DF6 /* TableViewCell.h */,
-				B766ED9D19396AD9006D1DF6 /* TableViewCell.m */,
 			);
 			name = View;
 			path = ComicPhreak;
@@ -697,6 +695,8 @@
 				B762E24F18BD7A9E0041F579 /* ContentViewController.m */,
 				B7C7EA1B192253F1003F3693 /* SizeHelper.h */,
 				B7C7EA1C192253F1003F3693 /* SizeHelper.m */,
+				B7A21B031DAEB315004401FF /* LibraryTableViewCell.h */,
+				B7A21B041DAEB315004401FF /* LibraryTableViewCell.m */,
 			);
 			name = Controller;
 			path = ComicPhreak;
@@ -834,7 +834,6 @@
 				B762E22F18BAC57D0041F579 /* sha1.cpp in Sources */,
 				B7C7EA1D192253F1003F3693 /* SizeHelper.m in Sources */,
 				B7A96B1C1898A09100ACC58A /* DirectoryManager.m in Sources */,
-				B766ED9E19396AD9006D1DF6 /* TableViewCell.m in Sources */,
 				B7F1367A17DD36A0003674A5 /* main.m in Sources */,
 				B7A327761C854425005AECCE /* secpassword.cpp in Sources */,
 				B762E22318BAC57D0041F579 /* recvol.cpp in Sources */,
@@ -894,6 +893,7 @@
 				B7A327A51C85C1D5005AECCE /* getbits.cpp in Sources */,
 				B7A3273F1C854292005AECCE /* blake2s.cpp in Sources */,
 				B762E12318BAC34B0041F579 /* gzclose.c in Sources */,
+				B7A21B051DAEB315004401FF /* LibraryTableViewCell.m in Sources */,
 				B762E20718BAC57D0041F579 /* list.cpp in Sources */,
 				B762E23A18BAC57D0041F579 /* timefn.cpp in Sources */,
 				B7A327A91C85C603005AECCE /* encname.cpp in Sources */,
