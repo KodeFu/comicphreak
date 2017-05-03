@@ -10,6 +10,7 @@
 #import "DbManager.h"
 #import "PathHelper.h"
 #import "Debug.h"
+#import "Comic.h"
 
 @interface DirectoryManager()
 {
@@ -365,6 +366,7 @@
         NSString *filePath = [PathHelper getDocumentsPathWithFilename:fileName];
         NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
         NSInteger fileSize = [[fileAttributes valueForKey:NSFileSize] intValue];
+        //[[fileAttributes valueForKey:NSFileCreationDate] intValue];
         
         // Get today's date for date added
         //NSDate now = [NSDate
@@ -374,8 +376,50 @@
         NSString *groupName = [self getGroupFromFileName:fileName];
         
         
+        // Add some experimental code here! Like getting thumbnails
+        int totalPages = 0;
+        
+        NSString *comicFilePath = [PathHelper getDocumentsPathWithFilename:fileName];
+        Comic *comic = [[Comic alloc] initWithFileName:comicFilePath];
+        
+        if ([comic openComic] == YES)
+        {
+            totalPages = [comic comicTotalPages];
+            
+            if (totalPages > 0)
+            {
+                UIImage *firstPageImage = [comic getImageAtIndex:0];
+                
+                if (firstPageImage != Nil)
+                {
+                    NSString *thumbName =  [comicFilePath stringByAppendingString:@".jpg"];
+                    
+                    CGSize destinationSize = CGSizeMake(160, 240.0);
+                        
+                    UIGraphicsBeginImageContext(destinationSize);
+                    [firstPageImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
+                    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                        
+                    NSData* data = UIImageJPEGRepresentation(newImage, 0.2);
+                    //[data writeToFile:thumbName atomically:YES];
+                        
+                }
+            }
+            
+        }
+        
+        DLOG(@"totalPages = %d", totalPages);
+        
+        //FIXME: Should record be valid right away? Maybe valid after we check and get metadata
+        
         // Add each filename, filesize to the database, IsValue=true
-        [[DbManager sharedInstance] insertRecordWithName:fileName AndGroupName:groupName AndFileSize:fileSize AndDateCreated:@"" AndDateModified:@"" AndDateAccessed:@"" AndTotalPages:0 AndCurrentPage:0 AndThumbNailFileName:@"" AndIsUnread:0 AndIsDeleted:0 AndIsValid:1];
+        [[DbManager sharedInstance] insertRecordWithName:fileName
+                                            AndGroupName:groupName
+                                             AndFileSize:fileSize
+                                              AndIsValid:1
+         ];
+        
         
         // !!! Add valid sizes, data modfied/access, created, etc here.
         

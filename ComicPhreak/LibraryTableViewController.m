@@ -129,8 +129,53 @@
     NSDictionary *record = [SuperMonsterList objectAtIndex:[indexPath row]];
     NSString *fileName = [record objectForKey:@"FileName"];
 	
+    // Get record from actual database
+    //record = [[DbManager sharedInstance] getRecordByFileName:fileName];
+    //NSString *cleanedFileName = [record objectForKey:@"CleanedFilenName"];
+    
+    record = [[DbManager sharedInstance] getRecordByFileName:fileName];
+    id assCurrentPage = [record objectForKey:@"CurrentPage"];
+    
+    if (assCurrentPage == nil)
+    {
+        DLOG(@"assCurrentPage is NULL");
+    }
+    else
+    {
+        DLOG(@"assCurrentPage is something else")
+    }
+    
+    //DLOG(@"assCurrentPage = %d", [assCurrentPage intValue]);
+
+    
     // Configure the cell...    
-    [[cell nameLabel] setText:fileName];
+    //[[cell nameLabel] setText:fileName];
+    
+    cell.fileName = fileName;
+    
+    // Update cell properties
+    [cell updateProperties];
+    
+    //int currentPage = [[record objectForKey:@"CurrentPage"] integerValue];
+    
+    //DLOG(@"currentPage = %d", currentPage);
+    
+    /*
+     How do we write data back to the database? We populate SuperMonsterList at some point - when?
+     Do we get notified when we need to refresh SuperMonsterList? We do receive a STOP_SYNC notification
+     and call a reload of the SuperMonsterList from the database.
+     
+     But, what if we have to update a record's value? So, say, we need to update the CurrentPage after someone
+     reads a comic. The page change, what do we update? SuperMonsterList or the database or both?
+     
+     If we update SuperMonsterList, we still need to flush it to database.
+     If we update the database, do we need to update the SuperMonsterList? Yes. We always pull records from
+     SuperMonsterList, so if that data is no longer valid, that's a problem.
+     
+     What if we always push / pull from the database? So, we get the SuperMonsterList and load the data in the table.
+     
+     So we get the list, load the table. List is cached. Don't use cached list. Use database record.
+     */
     
     return cell;
 }
@@ -201,8 +246,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         
         ContentViewController *contentViewController = [segue destinationViewController];
-        [contentViewController setComicFileName:[[cell nameLabel] text]];
-    
+        //[contentViewController setComicFileName:[[cell nameLabel] text]];
+        [contentViewController setComicFileName:[cell fileName]];
+        
         DLOG(@"cell row we're segueing to %d", [indexPath row]);
 
     }

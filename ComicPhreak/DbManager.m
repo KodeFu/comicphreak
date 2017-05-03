@@ -37,7 +37,12 @@
         sharedInstance = [[self alloc] init];
         
         // DEBUG
-        //[sharedInstance clearLibraryTable];
+        DLOG(@"++++++++++++++ CLEARING LIBRARY TABLE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ CLEARING LIBRARY TABLE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ CLEARING LIBRARY TABLE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ CLEARING LIBRARY TABLE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ CLEARING LIBRARY TABLE DEBUG ONLY ++++++++++++++++++++++");
+        [sharedInstance clearLibraryTable];
     });
 	
     return sharedInstance;
@@ -104,6 +109,16 @@
 			return Nil;
 		}
 		
+        // DEBUG
+        DLOG(@"++++++++++++++ RECREATING DATABASE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ RECREATING DATABASE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ RECREATING DATABASE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ RECREATING DATABASE DEBUG ONLY ++++++++++++++++++++++");
+        DLOG(@"++++++++++++++ RECREATING DATABASE DEBUG ONLY ++++++++++++++++++++++");
+        //[self recreateDatabase];
+        
+        
+        
 		if (![self createDatabase])
 		{
 			return Nil;
@@ -116,6 +131,21 @@
 	}
 	
     return self;
+}
+
++ (void) dumpAllRecordsWithDictionaryList: (NSArray *) list
+{
+    if (list == Nil)
+    {
+        DLOG(@"error dictionary array is Nil");
+        return;
+    }
+    
+    for  (NSDictionary *record in list)
+    {
+        [DbManager printRecordWithDictionary:record];
+    }
+    
 }
 
 + (void) printRecordWithDictionary: (NSDictionary *) dictionary
@@ -135,9 +165,8 @@
 	NSString  *fileName = [dictionary objectForKey:@"FileName"];
 	NSString  *groupName = [dictionary objectForKey:@"GroupName"];
 	NSInteger fileSize = [[dictionary objectForKey:@"FileSize"] integerValue];
-	NSString  *dateCreated = [dictionary objectForKey:@"DateCreated"];
-	NSString  *dateModified = [dictionary objectForKey:@"DateModified"];
-	NSString  *dateAccessed = [dictionary objectForKey:@"DateAccessed"];
+	NSString  *dateAdded = [dictionary objectForKey:@"DateAdded"];
+	NSString  *lastAccessed = [dictionary objectForKey:@"LastAccessed"];
 	NSInteger totalPages = [[dictionary objectForKey:@"TotalPages"] integerValue];
 	NSInteger currentPage = [[dictionary objectForKey:@"CurrentPage"] integerValue];
 	NSString  *thumbNailFileName = [dictionary objectForKey:@"ThumbNailFileName"];
@@ -146,11 +175,17 @@
 	NSInteger isValid = [[dictionary objectForKey:@"IsValid"] integerValue];
 	
 	DLOG(@"%@ %@ c%d %@ %@ %@ %d %d %@ %d %d %d",
-		 fileName, groupName, fileSize,
-		 dateCreated, dateModified, dateAccessed,
-		 totalPages, currentPage,
+		 fileName,
+         groupName,
+         fileSize,
+		 dateAdded,
+         lastAccessed,
+		 totalPages,
+         currentPage,
 		 thumbNailFileName,
-		 isUnread, isDeleted, isValid);
+		 isUnread,
+         isDeleted,
+         isValid);
 }
 
 #pragma mark Database Creation
@@ -186,7 +221,7 @@
 		[_sqlm closeDatabase];
 	}
 	
-	if (![PathHelper deleteFileAtPath:SQL_DATABASE])
+	if (![PathHelper deleteFileAtPath:[PathHelper getMetaDataPathWithFilename:SQL_DATABASE]])
 	{
 		DLOG(@"error failed to remove database file");
 	}
@@ -202,8 +237,19 @@
 		return NO;
 	}
 	
-	NSString *query = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (FileName text primary key not null, GroupName text, FileSize int, DateCreated text, DateModified text, DateAccessed text, TotalPages int, CurrentPage int, ThumbNailFileName text, IsUnread int, IsDeleted int, IsValid int);", SQL_TABLE_LIBRARY];
-	
+	NSString *query = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (FileName text primary key not null,\
+                       GroupName text,\
+                       FileSize int DEFAULT -1,\
+                       DateAdded text DEFAULT '',\
+                       LastAccessed text DEFAULT '',\
+                       TotalPages int DEFAULT -1,\
+                       CurrentPage int DEFAULT -1,\
+                       ThumbNailFileName text DEFAULT '',\
+                       IsUnread int DEFAULT 1,\
+                       IsDeleted int DEFAULT 0,\
+                       IsValid int DEFAULT -1);", SQL_TABLE_LIBRARY];
+
+                       
 	NSError *error = [_sqlm doQuery:query];
 	
 	if (error != Nil)
@@ -329,6 +375,229 @@
 	return YES;
 }
 
+#pragma Getters
+
+- (int) getTotalPagesByFileName: (NSString *) fileName
+{
+    int totalPages = -1;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return totalPages;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return totalPages;
+    }
+    
+    totalPages = (int) [item objectForKey:@"TotalPages"];
+    
+    return totalPages;
+}
+
+- (int) getCurrentPageByFileName: (NSString *) fileName
+{
+    int currentPage = -1;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return NO;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return currentPage;
+    }
+    
+    currentPage = (int) [item objectForKey:@"CurrentPage"];
+    
+    return currentPage;
+}
+
+- (int) getIsUnreadByFileName: (NSString *) fileName
+{
+    int isUnread = -1;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return isUnread;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return isUnread;
+    }
+    
+    isUnread = (int) [item objectForKey:@"IsUnread"];
+    
+    return isUnread;
+}
+
+- (int) getIsDeletedByFileName: (NSString *) fileName
+{
+    int isDeleted = -1;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return isDeleted;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return isDeleted;
+    }
+    
+    isDeleted = (int) [item objectForKey:@"IsDeleted"];
+    
+    return isDeleted;
+}
+
+- (int) getIsValidByFileName: (NSString *) fileName
+{
+    int isValid = -1;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return isValid;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return isValid;
+    }
+    
+    isValid = (int) [item objectForKey:@"IsValid"];
+    
+    return isValid;
+}
+
+- (int) getFileSizeByFileName: (NSString *) fileName
+{
+    int fileSize = -1;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return fileSize;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return fileSize;
+    }
+    
+    fileSize = (int) [item objectForKey:@"FileSize"];
+    
+    return fileSize;
+}
+
+- (NSString *) getDateAddedByFileName: (NSString *) fileName
+{
+    NSString *dateAdded = Nil;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return Nil;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return Nil;
+    }
+    
+    dateAdded = (NSString *) [item objectForKey:@"DateAdded"];
+    
+    return dateAdded;
+}
+
+- (NSString *) getLastAccessedByFileName: (NSString *) fileName
+{
+    NSString *lastAccessed = Nil;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return Nil;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return Nil;
+    }
+    
+    lastAccessed = (NSString *) [item objectForKey:@"LastAccessed"];
+    
+    return lastAccessed;
+}
+
+- (NSString *) getGroupNameByFileName: (NSString *) fileName
+{
+    NSString *groupName = Nil;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return Nil;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return Nil;
+    }
+    
+    groupName = (NSString *) [item objectForKey:@"GroupName"];
+    
+    return groupName;
+}
+
+- (NSString *) getGetThumbNaileFileNameByFileName: (NSString *) fileName
+{
+    NSString *thumbNaileFileName = Nil;
+    
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return Nil;
+    }
+    
+    NSDictionary *item = [self getRecordByFileName:fileName];
+    
+    if (item==nil)
+    {
+        return Nil;
+    }
+    
+    thumbNaileFileName = (NSString *) [item objectForKey:@"ThumbNaileFileName"];
+    
+    return thumbNaileFileName;
+}
+
+
 #pragma Add / Insert / Update
 
 - (BOOL) deleteRecordWithFileName: (NSString *) fileName
@@ -430,7 +699,7 @@
  */
 
 #pragma warn Not implemented yet
-- (BOOL) updateRecordWithFileName: (NSString *) fileName
+- (BOOL) updateRecordWithFileName: (NSString *) fileName AndRecord: (NSDictionary *) record
 {
 	if (_sqlm == Nil)
 	{
@@ -449,7 +718,32 @@
     
     NSString *cleanFileName = [NSString stringWithUTF8String:zSQL];
 	
-	NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET WHERE FileName='%@';", SQL_TABLE_LIBRARY, cleanFileName];
+	NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET \
+                       FileName='%@',\
+                       GroupName='%@',\
+                       FileSize='%@',\
+                       DateAdded='%@',\
+                       LastAccessed='%@',\
+                       TotalPages='%@',\
+                       CurrentPage='%@',\
+                       ThumbNailFileName='%@',\
+                       IsUnread='%@',\
+                       IsDeleted='%@',\
+                       IsValid='%@'\
+                       WHERE FileName='%@';",
+                       SQL_TABLE_LIBRARY,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName,
+                       cleanFileName];
     
     sqlite3_free(zSQL);
 	
@@ -467,9 +761,8 @@
 - (BOOL) insertRecordWithName: (NSString *) fileName
 				 AndGroupName: (NSString *) groupName
 				  AndFileSize: (NSInteger)  fileSize
-			   AndDateCreated: (NSString *) dateCreated
-			  AndDateModified: (NSString *) dateModified
-			  AndDateAccessed: (NSString *) dateAccessed
+			     AndDateAdded: (NSString *) dateAdded
+			  AndLastAccessed: (NSString *) lastAccessed
 				AndTotalPages: (NSInteger)  totalPages
 			   AndCurrentPage: (NSInteger)  currentPage
 		 AndThumbNailFileName: (NSString *) thumbNailFileName
@@ -486,22 +779,30 @@
     char *zSQL = sqlite3_mprintf("%q", [fileName UTF8String]);
     
     NSString *cleanFileName = [NSString stringWithUTF8String:zSQL];
-	
-	NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO %@ (FileName, GroupName, FileSize, DateCreated, DateModified, DateAccessed, TotalPages, CurrentPage, ThumbNailFileName, IsUnread, IsDeleted, IsValid) values ('%@','%@','%d','%@','%@','%@','%d','%d','%@','%d','%d','%d');",
-						SQL_TABLE_LIBRARY,
-						cleanFileName,
-						groupName,
-						fileSize,
-						dateCreated,
-						dateModified,
-						dateAccessed,
-						totalPages,
-						currentPage,
-						thumbNailFileName,
-						isUnread,
-						isDeleted,
-						isValid
-						];
+	/*
+    NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO %@ (FileName, GroupName, FileSize, DateCreated, DateModified, DateAccessed, TotalPages, CurrentPage, ThumbNailFileName, IsUnread, IsDeleted, IsValid) values ('%@','%@','%ld','%@','%@','%@','%ld','%ld','%@','%ld','%ld','%ld');",
+                        SQL_TABLE_LIBRARY,
+                        cleanFileName,
+                        groupName,
+                        (long)fileSize,
+                        dateAdded,
+                        lastAccessed,
+                        (long)totalPages,
+                        (long)currentPage,
+                        thumbNailFileName,
+                        (long)isUnread,
+                        (long)isDeleted,
+                        (long)isValid
+						];*/
+    
+    /* This works and creats NULL values in table, but then NULL values aren't valid in an NSDictionary, so doesn't work.*/
+    NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO %@ (FileName, GroupName, FileSize, IsValid) values ('%@','%@','%ld','%ld');",
+                        SQL_TABLE_LIBRARY,
+                        cleanFileName,
+                        groupName,
+                        (long)fileSize,
+                        (long)isValid
+                        ];
 	
     sqlite3_free(zSQL);
     
@@ -520,6 +821,46 @@
 	return YES;
 }
 
+- (BOOL) insertRecordWithName: (NSString *) fileName
+                 AndGroupName: (NSString *) groupName
+                  AndFileSize: (NSInteger)  fileSize
+                   AndIsValid: (NSInteger)  isValid
+{
+    if (_sqlm == Nil)
+    {
+        DLOG(@"error sqlm is Nil");
+        return NO;
+    }
+    
+    char *zSQL = sqlite3_mprintf("%q", [fileName UTF8String]);
+    
+    NSString *cleanFileName = [NSString stringWithUTF8String:zSQL];
+    
+    /* This works and creats NULL values in table, but then NULL values aren't valid in an NSDictionary, so doesn't work.*/
+    NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO %@ (FileName, GroupName, FileSize, IsValid) values ('%@','%@','%ld','%ld');",
+                        SQL_TABLE_LIBRARY,
+                        cleanFileName,
+                        groupName,
+                        (long)fileSize,
+                        (long)isValid
+                        ];
+    
+    sqlite3_free(zSQL);
+    
+    // Create an empty record first
+    //NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO %@ (FileName) values ('%@');", SQL_TABLE_LIBRARY, fileName];
+    
+    NSError *error = [_sqlm doQuery:sqlStr];
+    
+    if (error != nil)
+    {
+        NSLog(@"Error: %@",[error localizedDescription]);
+    }
+    
+    // Write whatever records are not NULL
+    
+    return YES;
+}
 
 #pragma mark Queries
 

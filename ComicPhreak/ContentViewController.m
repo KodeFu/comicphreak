@@ -152,6 +152,12 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     DLOG(@"viewWillDisappear");
+    
+    // Save comic book state back to database
+    // save the currentPage, how?
+    //g_cacheCurrentPage - or save current state when we change pages? Lot of db hits.
+    
+    
     // Kill the thread -- HACK SHOULD HAPPEN WHEN BACK IS PRESSED!
     //g_killThread = YES;
     
@@ -461,6 +467,8 @@
 {
     int startPage = 0;
     int endPage = 4;
+    
+    g_oldScrollPage = 0; // Access database here? Get current page?
     
     if (g_oldScrollPage)
     {

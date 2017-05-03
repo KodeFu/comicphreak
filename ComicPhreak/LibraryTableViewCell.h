@@ -14,4 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *thumbnailButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) NSString *fileName;
+
+- (void) updateProperties;
+
 @end

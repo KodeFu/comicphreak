@@ -21,4 +21,10 @@
     // Configure the view for the selected state
 }
 
+- (void) updateProperties
+{
+    _nameLabel.text = [_fileName stringByDeletingPathExtension];
+    
+}
+
 @end

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B70B317217DEC9A800053737 /* PathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B317117DEC9A800053737 /* PathHelper.m */; };
-		B73238921D7D2D8100A63F76 /* glyphicons-140-adjust-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = B73238911D7D2D8100A63F76 /* glyphicons-140-adjust-alt.png */; };
 		B73269B51D7FAF300076A883 /* LibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73269B41D7FAF300076A883 /* LibraryTableViewController.m */; };
+		B7550B7A1E08E168000FDE1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7550B791E08E168000FDE1C /* Images.xcassets */; };
 		B762E11718BAC34B0041F579 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B762E0EB18BAC34B0041F579 /* ioapi.c */; };
 		B762E11818BAC34B0041F579 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = B762E0ED18BAC34B0041F579 /* unzip.c */; };
 		B762E11918BAC34B0041F579 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B762E0EF18BAC34B0041F579 /* zip.c */; };
@@ -71,17 +71,12 @@
 		B762E24918BAC57D0041F579 /* volume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B762E1D418BAC57D0041F579 /* volume.cpp */; settings = {COMPILER_FLAGS = "-Wno-parentheses"; }; };
 		B762E24D18BAC57D0041F579 /* Unrar4iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B762E1DA18BAC57D0041F579 /* Unrar4iOS.mm */; };
 		B762E25018BD7A9E0041F579 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B762E24F18BD7A9E0041F579 /* ContentViewController.m */; };
-		B766EDA3193989CB006D1DF6 /* glyphicons_012_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = B766ED9F193989CB006D1DF6 /* glyphicons_012_heart.png */; };
-		B766EDA4193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png in Resources */ = {isa = PBXBuildFile; fileRef = B766EDA0193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png */; };
-		B766EDA5193989CB006D1DF6 /* glyphicons_027_search.png in Resources */ = {isa = PBXBuildFile; fileRef = B766EDA1193989CB006D1DF6 /* glyphicons_027_search.png */; };
-		B766EDA6193989CB006D1DF6 /* glyphicons_029_notes_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B766EDA2193989CB006D1DF6 /* glyphicons_029_notes_2.png */; };
 		B76A44CE1895C52300E6B82E /* RandomData.m in Sources */ = {isa = PBXBuildFile; fileRef = B76A44CD1895C52300E6B82E /* RandomData.m */; settings = {COMPILER_FLAGS = "-Wno-parentheses"; }; };
 		B79D1D051C89D000009B385A /* testComic.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D041C89D000009B385A /* testComic.m */; };
 		B79D1D071C89D01B009B385A /* testSQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D061C89D01A009B385A /* testSQLiteManager.m */; };
 		B79D1D091C89D02B009B385A /* testDirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D081C89D02B009B385A /* testDirectoryManager.m */; };
 		B79D1D0B1C89D03D009B385A /* testPathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D0A1C89D03D009B385A /* testPathHelper.m */; };
 		B79D1D0D1C89D063009B385A /* testDbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B79D1D0C1C89D063009B385A /* testDbManager.m */; };
-		B7A21B021DAD7050004401FF /* error_no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A21B011DAD7050004401FF /* error_no_image.png */; };
 		B7A21B051DAEB315004401FF /* LibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A21B041DAEB315004401FF /* LibraryTableViewCell.m */; };
 		B7A3273F1C854292005AECCE /* blake2s.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A3273B1C854292005AECCE /* blake2s.cpp */; };
 		B7A327581C85438B005AECCE /* hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327521C85438B005AECCE /* hash.cpp */; };
@@ -98,7 +93,6 @@
 		B7A327A71C85C40A005AECCE /* match.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327A61C85C40A005AECCE /* match.cpp */; settings = {COMPILER_FLAGS = "-Wno-parentheses"; }; };
 		B7A327A91C85C603005AECCE /* encname.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A327A81C85C603005AECCE /* encname.cpp */; };
 		B7A96B1C1898A09100ACC58A /* DirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A96B1B1898A09100ACC58A /* DirectoryManager.m */; };
-		B7C7EA1A1915BDDD003F3693 /* error_bad_page.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7EA191915BDDD003F3693 /* error_bad_page.png */; };
 		B7C7EA1D192253F1003F3693 /* SizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7EA1C192253F1003F3693 /* SizeHelper.m */; };
 		B7D612F718C3A6E000FF544D /* Comic.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D612F618C3A6E000FF544D /* Comic.m */; };
 		B7F1366E17DD36A0003674A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F1366D17DD36A0003674A5 /* UIKit.framework */; };
@@ -107,9 +101,6 @@
 		B7F1367817DD36A0003674A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7F1367617DD36A0003674A5 /* InfoPlist.strings */; };
 		B7F1367A17DD36A0003674A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F1367917DD36A0003674A5 /* main.m */; };
 		B7F1367E17DD36A0003674A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F1367D17DD36A0003674A5 /* AppDelegate.m */; };
-		B7F1368017DD36A0003674A5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F1367F17DD36A0003674A5 /* Default.png */; };
-		B7F1368217DD36A0003674A5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F1368117DD36A0003674A5 /* Default@2x.png */; };
-		B7F1368417DD36A0003674A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F1368317DD36A0003674A5 /* Default-568h@2x.png */; };
 		B7F1368717DD36A0003674A5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F1368517DD36A0003674A5 /* MainStoryboard_iPhone.storyboard */; };
 		B7F1368A17DD36A0003674A5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F1368817DD36A0003674A5 /* MainStoryboard_iPad.storyboard */; };
 		B7F1369717DD3745003674A5 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F1369617DD3745003674A5 /* SQLiteManager.m */; };
@@ -130,9 +121,9 @@
 		B70B317017DEC9A800053737 /* PathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathHelper.h; sourceTree = "<group>"; };
 		B70B317117DEC9A800053737 /* PathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathHelper.m; sourceTree = "<group>"; };
 		B70B317317DEC9E200053737 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
-		B73238911D7D2D8100A63F76 /* glyphicons-140-adjust-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons-140-adjust-alt.png"; sourceTree = "<group>"; };
 		B73269B31D7FAF300076A883 /* LibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTableViewController.h; sourceTree = "<group>"; };
 		B73269B41D7FAF300076A883 /* LibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewController.m; sourceTree = "<group>"; };
+		B7550B791E08E168000FDE1C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B762E0E818BAC34B0041F579 /* ARCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCHelper.h; sourceTree = "<group>"; };
 		B762E0EA18BAC34B0041F579 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		B762E0EB18BAC34B0041F579 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -261,10 +252,6 @@
 		B762E1DB18BAC57D0041F579 /* Unrar4iOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unrar4iOS_Prefix.pch; sourceTree = "<group>"; };
 		B762E24E18BD7A9E0041F579 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		B762E24F18BD7A9E0041F579 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
-		B766ED9F193989CB006D1DF6 /* glyphicons_012_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_012_heart.png; sourceTree = "<group>"; };
-		B766EDA0193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_013_beach_umbrella.png; sourceTree = "<group>"; };
-		B766EDA1193989CB006D1DF6 /* glyphicons_027_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_027_search.png; sourceTree = "<group>"; };
-		B766EDA2193989CB006D1DF6 /* glyphicons_029_notes_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_029_notes_2.png; sourceTree = "<group>"; };
 		B76A44CC1895C52300E6B82E /* RandomData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomData.h; sourceTree = "<group>"; };
 		B76A44CD1895C52300E6B82E /* RandomData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomData.m; sourceTree = "<group>"; };
 		B79D1D041C89D000009B385A /* testComic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testComic.m; sourceTree = "<group>"; };
@@ -272,7 +259,6 @@
 		B79D1D081C89D02B009B385A /* testDirectoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDirectoryManager.m; sourceTree = "<group>"; };
 		B79D1D0A1C89D03D009B385A /* testPathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPathHelper.m; sourceTree = "<group>"; };
 		B79D1D0C1C89D063009B385A /* testDbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDbManager.m; sourceTree = "<group>"; };
-		B7A21B011DAD7050004401FF /* error_no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_no_image.png; sourceTree = "<group>"; };
 		B7A21B031DAEB315004401FF /* LibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTableViewCell.h; sourceTree = "<group>"; };
 		B7A21B041DAEB315004401FF /* LibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewCell.m; sourceTree = "<group>"; };
 		B7A327391C854271005AECCE /* array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = array.hpp; sourceTree = "<group>"; };
@@ -314,12 +300,11 @@
 		B7A327B61C868CFD005AECCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7A96B1A1898A09100ACC58A /* DirectoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryManager.h; sourceTree = "<group>"; };
 		B7A96B1B1898A09100ACC58A /* DirectoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryManager.m; sourceTree = "<group>"; };
-		B7C7EA191915BDDD003F3693 /* error_bad_page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_bad_page.png; sourceTree = "<group>"; };
 		B7C7EA1B192253F1003F3693 /* SizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeHelper.h; sourceTree = "<group>"; };
 		B7C7EA1C192253F1003F3693 /* SizeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeHelper.m; sourceTree = "<group>"; };
 		B7D612F518C3A6E000FF544D /* Comic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comic.h; sourceTree = "<group>"; };
 		B7D612F618C3A6E000FF544D /* Comic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comic.m; sourceTree = "<group>"; };
-		B7F1366A17DD36A0003674A5 /* ComicPhreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComicPhreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7F1366A17DD36A0003674A5 /* Comic Phreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comic Phreak.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7F1366D17DD36A0003674A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7F1366F17DD36A0003674A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7F1367117DD36A0003674A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -329,9 +314,6 @@
 		B7F1367B17DD36A0003674A5 /* ComicPhreak-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ComicPhreak-Prefix.pch"; sourceTree = "<group>"; };
 		B7F1367C17DD36A0003674A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7F1367D17DD36A0003674A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B7F1367F17DD36A0003674A5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		B7F1368117DD36A0003674A5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		B7F1368317DD36A0003674A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B7F1368617DD36A0003674A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		B7F1368917DD36A0003674A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		B7F1369517DD3745003674A5 /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
@@ -589,20 +571,6 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		B7C7EA181915BDC2003F3693 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				B7A21B011DAD7050004401FF /* error_no_image.png */,
-				B73238911D7D2D8100A63F76 /* glyphicons-140-adjust-alt.png */,
-				B766ED9F193989CB006D1DF6 /* glyphicons_012_heart.png */,
-				B766EDA0193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png */,
-				B766EDA1193989CB006D1DF6 /* glyphicons_027_search.png */,
-				B766EDA2193989CB006D1DF6 /* glyphicons_029_notes_2.png */,
-				B7C7EA191915BDDD003F3693 /* error_bad_page.png */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		B7F1366117DD36A0003674A5 = {
 			isa = PBXGroup;
 			children = (
@@ -619,7 +587,7 @@
 		B7F1366B17DD36A0003674A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B7F1366A17DD36A0003674A5 /* ComicPhreak.app */,
+				B7F1366A17DD36A0003674A5 /* Comic Phreak.app */,
 				B7A327B21C868CFD005AECCE /* ComicPhreak.xctest */,
 			);
 			name = Products;
@@ -638,7 +606,7 @@
 		B7F1367417DD36A0003674A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B7C7EA181915BDC2003F3693 /* Images */,
+				B7550B791E08E168000FDE1C /* Images.xcassets */,
 				B762E12E18BAC57D0041F579 /* Unrar4iOS */,
 				B762E0E618BAC34B0041F579 /* Objective-Zip */,
 				B70B317317DEC9E200053737 /* Debug.h */,
@@ -646,9 +614,6 @@
 				B7F1367617DD36A0003674A5 /* InfoPlist.strings */,
 				B7F1367917DD36A0003674A5 /* main.m */,
 				B7F1367B17DD36A0003674A5 /* ComicPhreak-Prefix.pch */,
-				B7F1367F17DD36A0003674A5 /* Default.png */,
-				B7F1368117DD36A0003674A5 /* Default@2x.png */,
-				B7F1368317DD36A0003674A5 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			path = ComicPhreak;
@@ -737,7 +702,7 @@
 			);
 			name = ComicPhreak;
 			productName = ComicPhreak;
-			productReference = B7F1366A17DD36A0003674A5 /* ComicPhreak.app */;
+			productReference = B7F1366A17DD36A0003674A5 /* Comic Phreak.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -788,17 +753,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B766EDA3193989CB006D1DF6 /* glyphicons_012_heart.png in Resources */,
-				B7A21B021DAD7050004401FF /* error_no_image.png in Resources */,
-				B766EDA5193989CB006D1DF6 /* glyphicons_027_search.png in Resources */,
-				B766EDA6193989CB006D1DF6 /* glyphicons_029_notes_2.png in Resources */,
-				B766EDA4193989CB006D1DF6 /* glyphicons_013_beach_umbrella.png in Resources */,
-				B7C7EA1A1915BDDD003F3693 /* error_bad_page.png in Resources */,
 				B7F1367817DD36A0003674A5 /* InfoPlist.strings in Resources */,
-				B7F1368017DD36A0003674A5 /* Default.png in Resources */,
-				B7F1368217DD36A0003674A5 /* Default@2x.png in Resources */,
-				B73238921D7D2D8100A63F76 /* glyphicons-140-adjust-alt.png in Resources */,
-				B7F1368417DD36A0003674A5 /* Default-568h@2x.png in Resources */,
+				B7550B7A1E08E168000FDE1C /* Images.xcassets in Resources */,
 				B7F1368717DD36A0003674A5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				B7F1368A17DD36A0003674A5 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
@@ -1103,6 +1059,8 @@
 		B7F1369117DD36A0003674A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1115,8 +1073,8 @@
 					"-lstdc++",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.healthprosolutions.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = ComicPhreak;
+				PRODUCT_BUNDLE_IDENTIFIER = com.comicphreak.ComicFreaky;
+				PRODUCT_NAME = "Comic Phreak";
 				PROVISIONING_PROFILE = "";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 				WRAPPER_EXTENSION = app;
@@ -1126,6 +1084,8 @@
 		B7F1369217DD36A0003674A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1138,8 +1098,8 @@
 					"-lstdc++",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.healthprosolutions.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = ComicPhreak;
+				PRODUCT_BUNDLE_IDENTIFIER = com.comicphreak.ComicFreaky;
+				PRODUCT_NAME = "Comic Phreak";
 				PROVISIONING_PROFILE = "";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 				WRAPPER_EXTENSION = app;
